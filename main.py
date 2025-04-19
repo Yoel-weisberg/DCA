@@ -31,7 +31,8 @@ load_dotenv()
 api_key = os.getenv('ALPACA_API_KEY')
 api_secret = os.getenv('ALPACA_API_SECRET')
 is_paper = os.getenv('IS_PAPER', 'true').lower() == 'true'  # Use paper trading by default
-
+DAILY_INVESTMENT = float(os.getenv('DAILY_INVESTMENT', 1000.0))  # Default to $1000 if not set
+print(f"Daily Investment Amount: ${DAILY_INVESTMENT}")
 if not api_key or not api_secret:
     logger.error("API keys not found. Please check your .env file.")
     exit(1)
@@ -41,7 +42,6 @@ trading_client = TradingClient(api_key, api_secret, paper=is_paper)
 
 # Configuration
 SYMBOL = "SPY"  # S&P 500 ETF
-DAILY_INVESTMENT = 100.0  # $100 per day
 
 
 def check_market_hours():
