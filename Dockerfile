@@ -16,7 +16,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY dca_alpaca_script.py .
+COPY main.py .
 
 # Create a default .env file (will be overwritten by mounted volume in production)
 RUN echo "# Alpaca API Credentials\nALPACA_API_KEY=placeholder\nALPACA_API_SECRET=placeholder\nIS_PAPER=true" > .env
@@ -29,4 +29,4 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Run the script
-CMD ["python", "dca_alpaca_script.py"]
+CMD ["python", "main.py"]
