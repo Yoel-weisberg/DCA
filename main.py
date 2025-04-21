@@ -108,7 +108,8 @@ def run_dca_strategy():
 def schedule_dca():
     """Schedule the DCA strategy to run daily at market open."""
     # Schedule the job to run every day at 9:35 AM (5 minutes after market open)
-    schedule.every().day.at("09:35").do(run_dca_strategy)
+    # since my server is in germany - I am running this at 3:35 PM
+    schedule.every().day.at("15:35").do(run_dca_strategy)
     logger.info("DCA strategy scheduled to run daily at 9:35 AM")
     
     # Run immediately when script starts for the first time
